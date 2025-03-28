@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+  connection: ssh
+  tasks:
+    - name: print ssh user to stdout
+      debug:
+        msg: "This host is {{ inventory_hostname }} with user {{ ansible_ssh_user | ansible_user}}"
+
+    - name: add current ssh user to sudoers file
+      lineinfile:
+        path: /etc/sudoers
+        line: "{{ansible_ssh_user | default('undefined_user') }} ALL=(ALL) NOPASSWD:ALL"
+        validate: "visudo -cf %s"
