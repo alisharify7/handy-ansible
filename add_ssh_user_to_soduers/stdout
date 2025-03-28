@@ -1,0 +1,27 @@
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [192.168.1.30]
+ok: [192.168.1.20]
+ok: [192.168.1.10]
+
+TASK [print ssh user to stdout] ****************************************
+ok: [192.168.1.30] => {
+    "msg": "This host is 192.168.1.30 with user s3 s3"
+}
+ok: [192.168.1.20] => {
+    "msg": "This host is 192.168.1.20 with user s2 s2"
+}
+ok: [192.168.1.10] => {
+    "msg": "This host is 192.168.1.10 with user s1 s1"
+}
+
+TASK [add current ssh user to sudoers file] ****************************************
+ok: [192.168.1.30]
+ok: [192.168.1.20]
+ok: [192.168.1.10]
+
+PLAY RECAP *********************************************************************
+192.168.1.10               : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+192.168.1.20               : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+192.168.1.30               : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
